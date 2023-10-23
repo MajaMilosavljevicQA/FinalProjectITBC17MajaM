@@ -44,9 +44,9 @@ public class CheckoutStepOnePage extends BaseTest {
         lastNameInputField.sendKeys(lastname);
     }
 
-    public void inputPostalCode(String postalcode) {
+    public void inputPostalCode(int postalcode) {
         postalCodeInputField.clear();
-        postalCodeInputField.sendKeys(postalcode);
+        postalCodeInputField.sendKeys(Integer.toString(postalcode));
     }
 
     public void clickOnContinueButton() {

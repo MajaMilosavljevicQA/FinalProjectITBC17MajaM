@@ -24,14 +24,12 @@ public class CheckOutTests extends BaseTest {
         for (int i = 1; i < excelReader.getLastRow ("Ordering Info")-1; i++) {
             String validFirstName = excelReader.getStringData("Ordering Info", i, 0);
             String validLastName = excelReader.getStringData("Ordering Info", i, 1);
-            String validPostalCode = excelReader.getStringData("Ordering Info", i, 2);
+            int validPostalCode = excelReader.getIntegerData("Ordering Info", i, 2);
             checkoutStepOnePage.inputFirstName(validFirstName);
             checkoutStepOnePage.inputLasName(validLastName);
             checkoutStepOnePage.inputPostalCode(validPostalCode);
         }
         checkoutStepOnePage.clickOnCancelButton();
-
-        //todo   test pada --> proveri sa Dragoljubom sta moze da se uradi
 
     }
 
@@ -39,7 +37,7 @@ public class CheckOutTests extends BaseTest {
     public void verifyUserCanFillInfoFormAndFinishOrderAndGoToProductsPage() {
         checkoutStepOnePage.inputFirstName("Maja");
         checkoutStepOnePage.inputLasName("Milosavljevic");
-        checkoutStepOnePage.inputPostalCode("11000");
+        checkoutStepOnePage.inputPostalCode(11000);
         checkoutStepOnePage.clickOnContinueButton();
         checkoutStepTwoPage.clickOnFinishButton();
         checkoutCompletePage.assertCheckoutCompleteTitle();
@@ -50,20 +48,20 @@ public class CheckOutTests extends BaseTest {
         inventoryProductsPage.assertProductTitle();
     }
 
-    @Test (priority = 20)
+    @Test (priority = 30)
     public void verifyUserCanFillInfoFormAndCancelOrderOnStepOne() {
         checkoutStepOnePage.inputFirstName("Petra");
         checkoutStepOnePage.inputLasName("Petric");
-        checkoutStepOnePage.inputPostalCode("36000");
+        checkoutStepOnePage.inputPostalCode(36000);
         checkoutStepOnePage.clickOnCancelButton();
         cartPage.assertTitleYourCart();
     }
 
-    @Test (priority = 20)
+    @Test (priority = 40)
     public void verifyUserCanFillInfoFormAndCancelOrderOnStepTwo() {
         checkoutStepOnePage.inputFirstName("Љиљана");
         checkoutStepOnePage.inputLasName("Шумановић - Џокичиђ - Жижањ");
-        checkoutStepOnePage.inputPostalCode("36000");
+        checkoutStepOnePage.inputPostalCode(23456);
         checkoutStepOnePage.clickOnContinueButton();
         checkoutStepTwoPage.assertHeaderCheckoutOverView();
         checkoutStepOnePage.clickOnCancelButton();
